@@ -1,0 +1,136 @@
+name: Vitest framework CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - run: npm ci
+
+    # Nếu bạn có bước build, giữ lại dòng này, nếu không có thể bỏ qua
+    - run: npm run build --if-present
+
+    - run: npm test
+
+    # Tạo bảng kết quả test case
+    - name: Display test results
+      run: |
+        node -e "
+        const fs = require('fs');
+        const results = [
+          { functionName: 'longestIncreasingSubsequence', passed: 0, failed: 0 },
+          { functionName: 'uniquePaths', passed: 0, failed: 0 },
+          { functionName: 'maxProfit', passed: 0, failed: 0 },
+          { functionName: 'isPalindrome', passed: 0, failed: 0 },
+          { functionName: 'coinChange', passed: 0, failed: 0 },
+        ];
+        
+        const testData_longestIncreasingSubsequence = [
+          { input: [10, 9, 2, 5, 3, 7, 101, 18], expected: 4 },
+          { input: [0, 1, 0, 3, 2, 3], expected: 4 },
+          { input: [7, 7, 7, 7, 7, 7, 7], expected: 1 },
+        ];
+
+        const testData_uniquePaths = [
+          { m: 3, n: 7, expected: 28 },
+          { m: 3, n: 2, expected: 3 },
+          { m: 7, n: 3, expected: 28 },
+        ];
+
+        const testData_maxProfit = [
+          { prices: [7, 1, 5, 3, 6, 4], expected: 5 },
+          { prices: [7, 6, 4, 3, 1], expected: 0 },
+          { prices: [1, 2], expected: 1 },
+        ];
+
+        const testData_isPalindrome = [
+          { input: 'A man, a plan, a canal: Panama', expected: true },
+          { input: 'race a car', expected: false },
+          { input: '', expected: true },
+        ];
+
+        const testData_coinChange = [
+          { coins: [1, 2, 5], amount: 11, expected: 3 },
+          { coins: [2], amount: 3, expected: -1 },
+          { coins: [1], amount: 0, expected: 0 },
+        ];
+
+        // Đếm số lượng testcase passed và failed cho hàm longestIncreasingSubsequence
+        testData_longestIncreasingSubsequence.forEach(({ input, expected }) => {
+          const actual = longestIncreasingSubsequence(input);
+          if (actual === expected) {
+            results[0].passed++;
+          } else {
+            results[0].failed++;
+          }
+        });
+
+        // Đếm số lượng testcase passed và failed cho hàm uniquePaths
+        testData_uniquePaths.forEach(({ m, n, expected }) => {
+          const actual = uniquePaths(m, n);
+          if (actual === expected) {
+            results[1].passed++;
+          } else {
+            results[1].failed++;
+          }
+        });
+
+        // Đếm số lượng testcase passed và failed cho hàm maxProfit
+        testData_maxProfit.forEach(({ prices, expected }) => {
+          const actual = maxProfit(prices);
+          if (actual === expected) {
+            results[2].passed++;
+          } else {
+            results[2].failed++;
+          }
+        });
+
+        // Đếm số lượng testcase passed và failed cho hàm isPalindrome
+        testData_isPalindrome.forEach(({ input, expected }) => {
+          const actual = isPalindrome(input);
+          if (actual === expected) {
+            results[3].passed++;
+          } else {
+            results[3].failed++;
+          }
+        });
+
+        // Đếm số lượng testcase passed và failed cho hàm coinChange
+        testData_coinChange.forEach(({ coins, amount, expected }) => {
+          const actual = coinChange(coins, amount);
+          if (actual === expected) {
+            results[4].passed++;
+          } else {
+            results[4].failed++;
+          }
+        });
+
+        // In ra bảng thống kê số lượng testcase passed và failed cho mỗi hàm
+        console.table(results);
+        fs.writeFileSync('results.json', JSON.stringify(results, null, 2));
+        "
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: results.json
