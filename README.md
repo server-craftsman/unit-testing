@@ -1,3 +1,5 @@
+[![Vitest framework CI](https://github.com/server-craftsman/unit-testing/actions/workflows/node.js.yml/badge.svg)](https://github.com/server-craftsman/unit-testing/actions/workflows/node.js.yml)
+
 # Mastering JavaScript Unit Testing
 
 This repository contains all of the examples and exercises for my JavaScript testing course.
