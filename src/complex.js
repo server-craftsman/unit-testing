@@ -1,3 +1,6 @@
+// import { fizzBuzz, max } from "../src/intro";
+// import { longestIncreasingSubsequence, uniquePaths, maxProfit, isPalindrome, coinChange } from "../src/complex";
+
 // Hàm 1: Tìm dãy con tăng dài nhất trong mảng
 export function longestIncreasingSubsequence(arr) {
     // Nếu mảng rỗng, trả về 0
