@@ -1,5 +1,5 @@
 // main.js
-import { validateUserInput } from '../src/core.js';
+import { validateUserInput } from './src/core.js';
 
 function runValidation() {
   const testCases = [
