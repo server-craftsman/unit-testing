@@ -1,21 +1,30 @@
 [![Vitest framework CI](https://github.com/server-craftsman/unit-testing/actions/workflows/node.js.yml/badge.svg)](https://github.com/server-craftsman/unit-testing/actions/workflows/node.js.yml)
 
-# Mastering JavaScript Unit Testing
+# JavaScript Unit Testing
 
-This repository contains all of the examples and exercises for my JavaScript testing course.
+## Overview
 
-* Understand the fundamentals of unit testing and its significance in JavaScript development.
-* Master the setup and usage of Vitest for effective JavaScript testing.
-* Discover the best practices for writing clean, maintainable, and trustworthy tests.
-* Learn various techniques to run and debug tests effectively.
-* Explore VSCode shortcuts to boost coding productivity.
-* Master working with matchers and crafting precise, effective assertions.
-* Practice positive, negative, and boundary testing to cover a wide range of test scenarios.
-* Break dependencies in your tests with mocks.
-* Improve code quality with static analysis, including TypeScript, ESLint, and Prettier.
-* Automate code quality checks with Husky to maintain high coding standards.
+Welcome to the epitome of JavaScript Unit Testing. This project showcases the implementation of state-of-the-art unit testing using the Vitest framework. Our primary objective is to validate user input against predefined criteria, ensuring the utmost reliability and precision through automated testing.
 
+## Table of Contents
 
-You can find the full course at: 
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Tests](#tests)
+- [Contributing](#contributing)
+- [License](#license)
 
-https://codewithmosh.com
+## Prerequisites
+
+Before embarking on this journey, please ensure you have the following:
+
+- Node.js installed on your local machine.
+
+## Installation
+
+Setting up the project locally is a seamless experience. Follow these refined steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/server-craftsman/unit-testing.git
