@@ -1,43 +1,43 @@
-// // Import the necessary utilities from the testing framework
-// import { describe, it, expect  } from "vitest";
+// Import the necessary utilities from the testing framework
+import { describe, it, expect  } from "vitest";
 
-// // stringUtils.test.js
-// import { describe, it, expect } from 'vitest';
-// import { capitalizeWords } from '../src/stringUlti';
+// stringUtils.test.js
+import { describe, it, expect } from 'vitest';
+import { capitalizeWords } from '../src/stringUlti';
 
-// const capitalizeWordsTestData = [
-//   ['hello world', 'Hello World'],
-//   ['javaScript is awesome', 'JavaScript Is Awesome'],
-//   ['capitalize every word', 'Capitalize Every Word'],
-//   ['', ''],
-//   ['Ambatukam', 'Ambatukam'],
-// ];
+const capitalizeWordsTestData = [
+  ['Hello world', 'Hello World'],
+  ['javaScript is awesome', 'JavaScript Is Awesome'],
+  ['capitalize every word', 'Capitalize Every Word'],
+  ['', ''],
+  ['Ambatukam', 'ambatukam'],
+];
 
-// const capitalizeWordsInvalidTestData = [
-//   [123, 'Input must be a string'],
-//   [null, 'Input must be a string'],
-//   [undefined, 'Input must be a string'],
-//   [{}, 'Input must be a string'],
-//   [true, 'Input must be a string'],
-// ];
+const capitalizeWordsInvalidTestData = [
+  [123, 'Input must be a string'],
+  [null, 'Input must be a string'],
+  [undefined, 'Input must be a string'],
+  [{}, 'Input must be a string'],
+  [true, 'Input must be a string'],
+];
 
-// describe('capitalizeWords function', () => {
-//   // Test valid inputs
-//   it.each(capitalizeWordsTestData)(
-//     'should capitalize words in "%s" as "%s"',
-//     (input, expected) => {
-//       expect(capitalizeWords(input)).toBe(expected);
-//     }
-//   );
+describe('capitalizeWords function', () => {
+  // Test valid inputs
+  it.each(capitalizeWordsTestData)(
+    'should capitalize words in "%s" as "%s"',
+    (input, expected) => {
+      expect(capitalizeWords(input)).toBe(expected);
+    }
+  );
 
-//   // Test invalid inputs
-//   it.each(capitalizeWordsInvalidTestData)(
-//     'should throw an error for invalid input %s',
-//     (input, errorMessage) => {
-//       expect(() => capitalizeWords(input)).toThrow(errorMessage);
-//     }
-//   );
-// });
+  // Test invalid inputs
+  it.each(capitalizeWordsInvalidTestData)(
+    'should throw an error for invalid input %s',
+    (input, errorMessage) => {
+      expect(() => capitalizeWords(input)).toThrow(errorMessage);
+    }
+  );
+});
 
 // describe('Complex Functions', () => {
 //     // Dữ liệu thử nghiệm cho hàm longestIncreasingSubsequence
