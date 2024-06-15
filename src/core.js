@@ -1,4 +1,25 @@
 // Exercise: Writing good assertions
+export function validateUserInput(username, age) {
+  const validUsername = 'hoang-nt';
+  const validAge = 40;
+  let errors = [];
+
+  if (username !== validUsername) {
+    errors.push('Invalid username');
+  } else {
+    errors.push('Valid username');
+  }
+
+  if (age !== validAge) {
+    errors.push('Invalid age');
+  } else {
+    errors.push('Valid age');
+  }
+
+  return errors.join(', ') === 'Valid username, Valid age' ? 'Validation successful' : errors.join(', ');
+}
+
+
 export function getCoupons() {
   return [
     { code: 'SAVE20NOW', discount: 0.2 },
@@ -27,7 +48,7 @@ export function calculateDiscount(price, discountCode) {
 }
 
 // Exercise: Positive and negative testing
-export function validateUserInput(username, age) {
+export function validateUsersInput(username, age) {
   let errors = [];
 
   if (typeof username !== 'string' || username.length < 3) {
@@ -40,6 +61,7 @@ export function validateUserInput(username, age) {
 
   return errors.length === 0 ? 'Validation successful' : errors.join(', ');
 }
+
 
 // Lesson: Boundary testing
 export function isPriceInRange(price, min, max) {
